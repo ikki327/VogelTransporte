@@ -28,5 +28,7 @@ namespace VogelTransporte
         public const string Periodo = "Semestre 3, Agosto–Diciembre 2026";
         public const string Escuela = "Instituto Tecnológico de Tijuana";
         public const string Version = "1.0";
+
+        public const string Repositorio = "https://github.com/ikki327/VogelTransporte";
     }
 }

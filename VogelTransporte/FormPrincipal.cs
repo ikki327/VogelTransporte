@@ -532,8 +532,9 @@ namespace VogelTransporte
         {
             using var acerca = new Form
             {
+                // Configuración de la ventana
                 Text = "Acerca de",
-                Size = new Size(520, 430),
+                Size = new Size(520, 470),
                 FormBorderStyle = FormBorderStyle.FixedDialog,
                 MaximizeBox = false,
                 MinimizeBox = false,
@@ -583,11 +584,24 @@ namespace VogelTransporte
                 DialogResult = DialogResult.OK
             };
 
-            acerca.Controls.Add(lblInfo);
-            acerca.Controls.Add(btnCerrar);
-            acerca.Controls.Add(lblEnc);
-            acerca.AcceptButton = btnCerrar;
-            acerca.ShowDialog(this);
+            var lnkGitHub = new LinkLabel
+            {
+                Text = "Ver código en GitHub",
+                Dock = DockStyle.Bottom,
+                Height = 30,
+                TextAlign = ContentAlignment.MiddleCenter
+            };
+            // Abrir el enlace en el navegador predeterminado
+            lnkGitHub.LinkClicked += (s, e) =>
+                System.Diagnostics.Process.Start(
+                    new System.Diagnostics.ProcessStartInfo(DatosAutor.Repositorio) { UseShellExecute = true });
+
+            acerca.Controls.Add(lblInfo);// Agrega la información al final para que quede debajo del encabezado
+            acerca.Controls.Add(btnCerrar);// Agrega el botón Cerrar al final para que quede debajo del contenido
+            acerca.Controls.Add(lblEnc);// Agrega el enlace al final para que quede debajo del botón Cerrar
+            acerca.Controls.Add(lnkGitHub);// Agrega el enlace al final para que quede debajo del botón Cerrar
+            acerca.AcceptButton = btnCerrar;// Permite cerrar la ventana con Enter
+            acerca.ShowDialog(this);// Muestra la ventana como modal
         }
     }
 }
